@@ -1,0 +1,2 @@
+# DUEP
+ Full-Duplex Datenübertragungsprotokoll
