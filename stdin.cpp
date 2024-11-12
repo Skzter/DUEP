@@ -1,33 +1,52 @@
 #include<iostream>
 #include<string>
 
-#define CHUNK_SIZE 64
+#define CHUNK_SIZE 64.0
 
-std::string ReadBinary();
-int NumberOfChunks(std::string input);
+std::string InputToBinary(std::string InputString);
+std::string IntToBinary(int Input);
+double NumberOfChunks(std::string InputBinary);
 
 int main()
 {
-    std::string input = ReadBinary();
-    std::cout << input.length() << std::endl;
-    std::cout << input.size() << std::endl;
-    std::cout << NumberOfChunks(input) << std::endl;
-    double test = (double)312/64;
-    std::cout.precision(4);
-    std::cout.setf(std::ios::fixed);
-    std::cout << test << "test" << std::endl;
+    std::string Input;
+    std::getline(std::cin, Input);
+    std::string InputConverted = InputToBinary(Input);
+    std::cout << InputConverted << std::endl;
+    std::cout << NumberOfChunks(InputConverted) << std::endl;
+ }
+
+std::string InputToBinary(std::string InputString)
+{
+    std::string InputInBinary;
+    for(size_t i = 0; i < InputString.length(); i++)
+    {
+        int Converted = static_cast<int>(InputString[i]);
+        InputInBinary += IntToBinary(Converted);
+    }
+    return InputInBinary;
 }
 
-std::string ReadBinary()
+std::string IntToBinary(int Input)
 {
-    std::string eingabe;
-    std::getline(std::cin, eingabe);
-    return eingabe;
+    int Quotient;
+    int Remainder;
+    std::string Binary;
+    
+    do
+    {
+        Quotient = Input / 2;
+        Remainder = Input - (Quotient * 2);
+        Binary = std::to_string(Remainder) + Binary;
+        Input = Quotient;
+    }while(Quotient != 0);
+
+    return Binary;
 }
 
-int NumberOfChunks(std::string input)
+double NumberOfChunks(std::string InputBinary)
 {
-    double t = input.length()/CHUNK_SIZE;
-    std::cout << "This is with half chunks: " << t << std::endl;
-    return input.length()/CHUNK_SIZE;
+    return InputBinary.length()/CHUNK_SIZE;
 }
+
+
