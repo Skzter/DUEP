@@ -45,9 +45,9 @@ std::string InputToBinary(std::string InputString)
     std::string InputInBinary;
     for(size_t i = 0; i < InputString.length(); i++)
     {
-        unsigned char test = static_cast<unsigned char>(InputString[i]);
-        int Converted = static_cast<int>(test);
-        InputInBinary += IntToBinary(Converted);
+        unsigned char c_Converted = static_cast<unsigned char>(InputString[i]);
+        int i_Converted = static_cast<int>(c_Converted);
+        InputInBinary += IntToBinary(i_Converted);
     }
     return InputInBinary;
 }
@@ -121,4 +121,3 @@ void SaveBinaryInInt(std::string InputBinary)
         ReceivedBinaryToInt.push_back(std::stoi(byte, 0, 2));
     }
 }
-        
